@@ -194,6 +194,21 @@ export default function Home() {
             </div>
           </article>
         </div>
+        <div className="award">
+          <div className="award-copy">
+            <p className="section-label">AWARD</p>
+            <h2>Client Extraordinaire</h2>
+            <p>
+              Recognised by EY for serving as a trusted business advisor and
+              creating value for clients.
+            </p>
+            <span>EY · MAY 2026</span>
+          </div>
+          <img
+            src="/awards/ey-client-extraordinaire.jpg"
+            alt="EY Client Extraordinaire award certificate presented to Sourav Sarkar"
+          />
+        </div>
         <div className="contact-card">
           <p className="kicker">LET’S CONNECT</p>
           <h2>Working on a hard AI problem?</h2>

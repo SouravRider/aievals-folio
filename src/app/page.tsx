@@ -159,28 +159,48 @@ export default function Home() {
       </section>
 
       <section className="recognition shell">
-        <p className="section-label">RECOGNITION</p>
+        <p className="section-label">IN THEIR WORDS</p>
         <div className="recognition-grid">
-          <div className="quote-card">
+          <article className="quote-card">
             <span className="quote-mark">“</span>
             <p>
-              Manager feedback and selected awards will live here—adding the
-              voices and moments that have shaped my work.
+              Sourav consistently stood out for his ownership and clarity of
+              thought. He has a strong ability to break down ambiguous
+              problems, align stakeholders, and drive execution end-to-end.
             </p>
-            <span className="caption">COMING SOON</span>
-          </div>
-          <div className="contact-card">
-            <p className="kicker">LET’S CONNECT</p>
-            <h2>Working on a hard AI problem?</h2>
-            <a href="mailto:sourav.work20@gmail.com">sourav.work20@gmail.com <Arrow /></a>
-            <a
-              href="https://www.linkedin.com/in/sourav-sarkar-324943143/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              LinkedIn <Arrow />
-            </a>
-          </div>
+            <div className="reviewer">
+              <a href="https://www.linkedin.com/in/sameeksha-nath/" target="_blank" rel="noreferrer">
+                Sameeksha Nath <Arrow />
+              </a>
+              <span>Senior Product Manager, Nielsen</span>
+            </div>
+          </article>
+          <article className="quote-card">
+            <span className="quote-mark">“</span>
+            <p>
+              He demonstrates solid product sense and a clear point of view,
+              is dependable with ambiguous work, and consistently follows
+              through to get things done.
+            </p>
+            <div className="reviewer">
+              <a href="https://www.linkedin.com/in/siddhirawool/" target="_blank" rel="noreferrer">
+                Siddhi Rawool <Arrow />
+              </a>
+              <span>Product &amp; cross-functional feedback</span>
+            </div>
+          </article>
+        </div>
+        <div className="contact-card">
+          <p className="kicker">LET’S CONNECT</p>
+          <h2>Working on a hard AI problem?</h2>
+          <a href="mailto:sourav.work20@gmail.com">sourav.work20@gmail.com <Arrow /></a>
+          <a
+            href="https://www.linkedin.com/in/sourav-sarkar-324943143/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            LinkedIn <Arrow />
+          </a>
         </div>
       </section>
 

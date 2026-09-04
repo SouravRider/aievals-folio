@@ -20,22 +20,40 @@ const perspectives = [
 
 const journey = [
   {
-    period: "NOW",
-    title: "AI product & evaluation",
+    period: "OCT 2025 — NOW",
+    title: "Product Manager, Enterprise AI Platform",
+    company: "EY, AI Center of Excellence",
     description:
-      "Building a practice around reliable AI systems, product judgment, and evaluation-led development.",
+      "Own an AI-native data platform for GenAI insights and agentic decisioning. Built its eval and guardrail layer: 1,000+ human-labelled cases, production review sampling, PII redaction, and model routing that cut inference cost 40%.",
+    impact:
+      "Across BPO, aerospace, healthcare, and insurance: 90% automated QA across 50,000+ daily interactions; a Honeywell solution lifted CSAT 83% → 97%.",
   },
   {
-    period: "FOCUS",
-    title: "From models to outcomes",
+    period: "APR 2024 — OCT 2025",
+    title: "Product Manager, AI Data Platform",
+    company: "Nielsen Media",
     description:
-      "Working at the intersection of infrastructure, applied AI, and the human workflows products need to improve.",
+      "Owned the roadmap for Nielsen’s audio data platform, including Python ETL microservices, an S3 data lake, and a 12-node EMR-Spark pipeline handling multi-terabyte daily volume.",
+    impact:
+      "Reduced data lag 70%, sustained 99.9%+ uptime at P99, and reduced platform cost 15%.",
   },
   {
-    period: "APPROACH",
-    title: "Evidence over intuition",
+    period: "JUN 2022 — MAR 2024",
+    title: "Product Manager, B2B Subscription",
+    company: "Eblity",
     description:
-      "Combining user insight, rigorous measurement, and clear product strategy to make AI genuinely useful.",
+      "Found product-market fit for a subscription product for educational institutions, shaping customer discovery, pricing, growth roadmap, and partnerships.",
+    impact:
+      "Grew revenue 35% year over year; partnerships returned 250% ROI.",
+  },
+  {
+    period: "NOV 2020 — JAN 2022",
+    title: "Associate Product Manager, Consumer Platform",
+    company: "Sparklin",
+    description:
+      "Took a consumer product through launch and iteration, using experiments across acquisition and engagement to guide product decisions.",
+    impact:
+      "Increased user acquisition 30% month over month and engagement 15% month over month.",
   },
 ];
 
@@ -97,9 +115,9 @@ export default function Home() {
           <div className="journey-heading">
             <h2>A product career shaped by the questions AI makes possible.</h2>
             <p>
-              My work sits between what models can do and what people need them
-              to do. That means asking better questions, designing sharper
-              feedback loops, and never mistaking a demo for a product.
+              From consumer platforms and B2B SaaS to data infrastructure and
+              enterprise AI, my work has been grounded in a single habit:
+              measure what matters before scaling what works.
             </p>
           </div>
           <div className="timeline">
@@ -108,15 +126,13 @@ export default function Home() {
                 <span>{item.period}</span>
                 <div>
                   <h3>{item.title}</h3>
+                  <p className="company">{item.company}</p>
                   <p>{item.description}</p>
+                  <p className="impact">{item.impact}</p>
                 </div>
               </article>
             ))}
           </div>
-          <p className="journey-note">
-            A detailed experience timeline is being curated from Sourav’s
-            professional record.
-          </p>
         </div>
       </section>
 

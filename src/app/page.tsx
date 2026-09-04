@@ -167,6 +167,8 @@ export default function Home() {
               Sourav consistently stood out for his ownership and clarity of
               thought. He has a strong ability to break down ambiguous
               problems, align stakeholders, and drive execution end-to-end.
+              He brings a great balance of strategic thinking and hands-on
+              execution, along with a mindset of continuous learning.
             </p>
             <div className="reviewer">
               <a href="https://www.linkedin.com/in/sameeksha-nath/" target="_blank" rel="noreferrer">
@@ -180,7 +182,9 @@ export default function Home() {
             <p>
               He demonstrates solid product sense and a clear point of view,
               is dependable with ambiguous work, and consistently follows
-              through to get things done.
+              through to get things done. He collaborates effectively with
+              engineering and cross-functional partners, proactively seeks
+              feedback, and clarifies what success looks like.
             </p>
             <div className="reviewer">
               <a href="https://www.linkedin.com/in/siddhirawool/" target="_blank" rel="noreferrer">

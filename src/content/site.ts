@@ -4,6 +4,7 @@ export type Block =
   | { kind: "stats"; items: { value: string; label: string }[] }
   | { kind: "quote"; text: string }
   | { kind: "image"; src: string; alt: string }
+  | { kind: "carousel"; images: { src: string; alt: string }[] }
   | { kind: "links"; items: { label: string; href: string }[] };
 
 export type Entry = {
@@ -69,9 +70,9 @@ export const overview = {
     topics: ["AI evals", "AI product management", "Data platforms", "Weekly AI briefings"],
   },
   proof: [
-    "EY Client Extraordinaire — May 2026",
+    "Siddhi Rawool — Director, AI Center of Excellence, EY",
     "Sameeksha Nath — Senior Product Manager, Nielsen",
-    "Siddhi Rawool — peer feedback",
+    "EY Client Extraordinaire — May 2026",
   ],
 };
 
@@ -448,6 +449,29 @@ const writing: Entry[] = writingPosts.map((post, i) => ({
 
 const feedback: Entry[] = [
   {
+    id: "siddhi",
+    title: "Siddhi Rawool",
+    meta: "Director, AI Center of Excellence, EY · Sourav's manager",
+    note: "On product judgment, ownership, execution and cross-functional leadership.",
+    href: "https://www.linkedin.com/in/siddhirawool/",
+    blocks: [
+      {
+        kind: "carousel",
+        images: [
+          {
+            src: "/proof/siddhi-feedback-1.png",
+            alt: "Manager feedback from Siddhi Rawool on Sourav's product judgment, ownership, execution, collaboration and communication.",
+          },
+          {
+            src: "/proof/siddhi-feedback-2.png",
+            alt: "Additional manager feedback from Siddhi Rawool describing Sourav as a force multiplier for delivery.",
+          },
+        ],
+      },
+      { kind: "links", items: [{ label: "Siddhi on LinkedIn", href: "https://www.linkedin.com/in/siddhirawool/" }] },
+    ],
+  },
+  {
     id: "sameeksha",
     title: "Sameeksha Nath",
     meta: "Senior Product Manager, Nielsen · managed Sourav directly",
@@ -460,21 +484,6 @@ const feedback: Entry[] = [
         alt: "LinkedIn recommendation from Sameeksha Nath, Senior Product Manager at Nielsen, dated 3 May 2026, describing Sourav's ownership, clarity of thought, and ability to break down ambiguous problems and drive execution end to end.",
       },
       { kind: "links", items: [{ label: "Sameeksha on LinkedIn", href: "https://www.linkedin.com/in/sameeksha-nath/" }] },
-    ],
-  },
-  {
-    id: "siddhi",
-    title: "Siddhi Rawool",
-    meta: "Peer feedback",
-    note: "On product sense, dependability with ambiguous work, and follow-through.",
-    href: "https://www.linkedin.com/in/siddhirawool/",
-    blocks: [
-      {
-        kind: "image",
-        src: "/proof/siddhi-rawool.png",
-        alt: "Written feedback from Siddhi Rawool covering product judgment and point of view, ownership and execution, collaboration and communication, and describing Sourav as a force multiplier for delivery.",
-      },
-      { kind: "links", items: [{ label: "Siddhi on LinkedIn", href: "https://www.linkedin.com/in/siddhirawool/" }] },
     ],
   },
 ];
@@ -576,13 +585,13 @@ const workArchive: Entry[] = [
 ];
 
 const proofOfWork: Entry[] = [
-  ...awards.map((entry) => ({
-    ...entry,
-    meta: `AWARD · ${entry.meta}`,
-  })),
   ...feedback.map((entry) => ({
     ...entry,
     meta: `FEEDBACK · ${entry.meta}`,
+  })),
+  ...awards.map((entry) => ({
+    ...entry,
+    meta: `AWARD · ${entry.meta}`,
   })),
 ];
 
@@ -635,6 +644,8 @@ export function blockText(entry: Entry): string {
           return block.items.map((item) => item.label).join(" ");
         case "image":
           return block.alt;
+        case "carousel":
+          return block.images.map((image) => image.alt).join(" ");
       }
     })
     .join(" ");

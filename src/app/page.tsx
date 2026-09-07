@@ -58,6 +58,15 @@ export default function Home() {
                           ))}
                         </p>
                       );
+                    if (block.kind === "carousel")
+                      return (
+                        <div key={i}>
+                          {block.images.map((image) => (
+                            // eslint-disable-next-line @next/next/no-img-element
+                            <img key={image.src} src={image.src} alt={image.alt} />
+                          ))}
+                        </div>
+                      );
                     return null;
                   })}
                 </article>

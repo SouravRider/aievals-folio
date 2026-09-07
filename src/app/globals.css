@@ -159,6 +159,17 @@ button {
   color: var(--ink);
 }
 
+.ident-name button {
+  font: inherit;
+  letter-spacing: inherit;
+  color: inherit;
+  text-align: left;
+}
+
+.ident-name button:hover {
+  color: var(--accent);
+}
+
 .tools {
   display: flex;
   align-items: center;
@@ -529,6 +540,16 @@ button {
   border-bottom: 1px solid var(--hair);
   font: 13.5px/1.4 var(--sans);
   color: var(--text);
+}
+
+.proof-award {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1.42;
+  margin-bottom: 10px;
+  border: 1px solid var(--hair);
+  border-radius: 6px;
+  object-fit: cover;
 }
 
 .card-link {
@@ -991,6 +1012,65 @@ html[data-theme="dark"] .b-image {
 
 html[data-theme="dark"] .b-image:hover {
   filter: none;
+}
+
+.carousel {
+  width: 100%;
+}
+
+.carousel-frame {
+  min-height: 120px;
+}
+
+.carousel-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 11px;
+}
+
+.carousel-controls button {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--hair);
+  border-radius: 50%;
+  color: var(--muted);
+}
+
+.carousel-controls button:hover {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
+.carousel-controls span {
+  min-width: 34px;
+  font: 11px var(--mono);
+  text-align: center;
+  color: var(--muted);
+}
+
+.carousel-next {
+  transform: rotate(180deg);
+}
+
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 7px;
+}
+
+.carousel-dots button {
+  width: 18px;
+  height: 2px;
+  background: var(--hair);
+}
+
+.carousel-dots button[aria-current="true"] {
+  background: var(--accent);
 }
 
 .b-links {

@@ -75,11 +75,13 @@ export default function Desk() {
   }, []);
 
   const openFolder = useCallback((folderId: string, entryId?: string) => {
+    const folder = folders.find((item) => item.id === folderId);
     setTabs((current) => (current.includes(folderId) ? current : [...current, folderId]));
     setActiveTab(folderId);
-    if (entryId !== undefined) {
-      setSelection((current) => ({ ...current, [folderId]: entryId }));
-    }
+    setSelection((current) => ({
+      ...current,
+      [folderId]: entryId ?? folder?.entries[0]?.id ?? null,
+    }));
   }, []);
 
   const closeTab = useCallback(
@@ -293,7 +295,11 @@ export default function Desk() {
       <div className="desk">
         <aside className="ident">
           <div className="ident-top">
-            <h1 className="ident-name">{identity.name}</h1>
+            <h1 className="ident-name">
+              <button type="button" onClick={closeNote} aria-label="Return to overview">
+                {identity.name}
+              </button>
+            </h1>
             <div className="tools">
               <button
                 type="button"
@@ -454,6 +460,14 @@ export default function Desk() {
 
                 <section className="card">
                   <p className="card-label">Proof of work</p>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    className="proof-award"
+                    src="/awards/ey-client-extraordinaire.jpg"
+                    alt="EY Client Extraordinaire award presented to Sourav Sarkar"
+                    width={1240}
+                    height={873}
+                  />
                   <ul className="proof-list">
                     {overview.proof.map((item) => (
                       <li key={item}>{item}</li>
@@ -712,6 +726,8 @@ function BlockView({ block }: { block: Block }) {
     case "image":
       // eslint-disable-next-line @next/next/no-img-element
       return <img className="b-image" src={block.src} alt={block.alt} loading="lazy" />;
+    case "carousel":
+      return <ImageCarousel images={block.images} />;
     case "links":
       return (
         <p className="b-links">
@@ -724,4 +740,43 @@ function BlockView({ block }: { block: Block }) {
         </p>
       );
   }
+}
+
+function ImageCarousel({ images }: { images: { src: string; alt: string }[] }) {
+  const [index, setIndex] = useState(0);
+
+  const goTo = (next: number) => {
+    setIndex((next + images.length) % images.length);
+  };
+
+  return (
+    <div className="carousel" aria-roledescription="carousel" aria-label="Manager feedback">
+      <div className="carousel-frame">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img className="b-image" src={images[index].src} alt={images[index].alt} loading="lazy" />
+      </div>
+      <div className="carousel-controls">
+        <button type="button" onClick={() => goTo(index - 1)} aria-label="Previous feedback">
+          <BackIcon className="glyph glyph-xs" />
+        </button>
+        <span aria-live="polite">
+          {index + 1} / {images.length}
+        </span>
+        <button type="button" onClick={() => goTo(index + 1)} aria-label="Next feedback">
+          <BackIcon className="glyph glyph-xs carousel-next" />
+        </button>
+      </div>
+      <div className="carousel-dots" role="group" aria-label="Choose feedback">
+        {images.map((image, position) => (
+          <button
+            type="button"
+            key={image.src}
+            aria-label={`Show feedback ${position + 1}`}
+            aria-current={position === index}
+            onClick={() => setIndex(position)}
+          />
+        ))}
+      </div>
+    </div>
+  );
 }

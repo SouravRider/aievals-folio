@@ -413,16 +413,11 @@ export default function Desk() {
                     onClick={() => openFolder("proof", "client-extraordinaire")}
                     aria-label="View the EY Client Extraordinaire award certificate"
                   >
-                    <span className="award-kicker">Recognition · EY</span>
-                    <span className="award-title">Client Extraordinaire</span>
-                    <span className="award-copy">
-                      Awarded for serving as a trusted business advisor and
-                      creating value for the client.
+                    <span className="award-statement">
+                      <strong>EY award winner</strong> for turning enterprise AI
+                      deployments into measurable client value.
                     </span>
-                    <span className="award-link">
-                      View award
-                      <ArrowIcon className="glyph glyph-xs" />
-                    </span>
+                    <ArrowIcon className="glyph award-arrow" />
                   </button>
                 </div>
               </div>

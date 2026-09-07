@@ -608,7 +608,17 @@ export const folders: Folder[] = [
   },
 ];
 
-export const recentWriting = writing.slice(0, 3).map(({ id, title, meta }) => ({ id, title, meta }));
+const seenTitles = new Set<string>();
+
+export const recentWriting = writing
+  .filter((entry) => {
+    const key = entry.title.toLowerCase();
+    if (seenTitles.has(key)) return false;
+    seenTitles.add(key);
+    return true;
+  })
+  .slice(0, 3)
+  .map(({ id, title, meta }) => ({ id, title, meta }));
 
 export function blockText(entry: Entry): string {
   return entry.blocks

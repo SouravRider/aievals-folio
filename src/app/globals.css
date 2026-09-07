@@ -407,7 +407,7 @@ button {
 }
 
 .award-statement small {
-  font: 500 9.5px var(--mono);
+  font: 500 10.5px var(--mono);
   letter-spacing: 0.09em;
   text-transform: uppercase;
   color: var(--accent);
@@ -415,14 +415,14 @@ button {
 
 .award-statement strong {
   max-width: 14ch;
-  font: 400 24px/1.04 var(--serif);
+  font: 400 29px/1.04 var(--serif);
   letter-spacing: -0.025em;
   color: var(--ink);
 }
 
 .award-statement > span {
   max-width: 29ch;
-  font: 13px/1.45 var(--sans);
+  font: 14px/1.45 var(--sans);
   color: var(--muted);
 }
 
@@ -435,7 +435,7 @@ button {
 }
 
 .portrait {
-  width: 136px;
+  width: 180px;
   height: auto;
   aspect-ratio: 1;
   justify-self: end;
@@ -727,8 +727,8 @@ button {
   }
 
   .portrait {
-    width: 96px;
-    height: 96px;
+    width: 108px;
+    height: 108px;
     border-radius: 10px;
   }
 
@@ -742,15 +742,15 @@ button {
   }
 
   .award-statement strong {
-    font-size: 18px;
+    font-size: 20px;
   }
 
   .award-statement small {
-    font-size: 7.5px;
+    font-size: 8.5px;
   }
 
   .award-statement > span {
-    font-size: 10.5px;
+    font-size: 11.5px;
   }
 }
 

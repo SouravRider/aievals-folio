@@ -532,10 +532,40 @@ const toolkit: Entry[] = [
   },
 ];
 
+const workArchive: Entry[] = [
+  ...work,
+  ...deployments.map((entry) => ({
+    ...entry,
+    meta: `SELECTED DEPLOYMENT · ${entry.meta}`,
+  })),
+  ...evals.map((entry) => ({
+    ...entry,
+    meta: "EVALUATION PRACTICE",
+  })),
+  ...toolkit.map((entry) => ({
+    ...entry,
+    meta: entry.meta ? `FOUNDATION · ${entry.meta}` : "CAPABILITIES",
+  })),
+];
+
+const proofOfWork: Entry[] = [
+  ...awards.map((entry) => ({
+    ...entry,
+    meta: `AWARD · ${entry.meta}`,
+  })),
+  ...feedback.map((entry) => ({
+    ...entry,
+    meta: `FEEDBACK · ${entry.meta}`,
+  })),
+];
+
 export const folders: Folder[] = [
-  { id: "work", label: "work", hint: "Roles, in order.", entries: work },
-  { id: "deployments", label: "deployments", hint: "AI shipped into client operations.", entries: deployments },
-  { id: "evals", label: "evals", hint: "How I think about measurement.", entries: evals },
+  {
+    id: "work",
+    label: "work",
+    hint: "Roles, selected deployments, evaluation practice and capabilities.",
+    entries: workArchive,
+  },
   {
     id: "writing",
     label: "writing",
@@ -543,9 +573,12 @@ export const folders: Folder[] = [
     link: { label: "souravsarkar.substack.com", href: "https://souravsarkar.substack.com/" },
     entries: writing,
   },
-  { id: "feedback", label: "feedback", hint: "In their words.", entries: feedback },
-  { id: "awards", label: "awards", hint: "Recognition.", entries: awards },
-  { id: "toolkit", label: "toolkit", hint: "Skills and schooling.", entries: toolkit },
+  {
+    id: "proof",
+    label: "proof of work",
+    hint: "Recognition and feedback from people I have worked with.",
+    entries: proofOfWork,
+  },
 ];
 
 export function blockText(entry: Entry): string {

@@ -374,16 +374,13 @@ button {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(270px, 340px);
   gap: clamp(36px, 5cqi, 68px);
-  align-items: stretch;
+  align-items: start;
 }
 
 .welcome-visuals {
   display: grid;
-  grid-template-rows: auto 1fr;
-  overflow: hidden;
-  border: 1px solid var(--hair);
-  border-radius: 12px;
-  background: var(--surface);
+  gap: 22px;
+  justify-items: stretch;
 }
 
 .featured-award {
@@ -392,16 +389,14 @@ button {
   justify-content: space-between;
   gap: 16px;
   width: 100%;
-  min-height: 150px;
-  padding: 20px;
+  padding: 18px 0 0;
   border-top: 2px solid var(--accent);
-  background: color-mix(in srgb, var(--accent) 4%, var(--surface));
   text-align: left;
-  transition: background 0.15s ease;
+  transition: transform 0.2s var(--ease);
 }
 
 .featured-award:hover {
-  background: color-mix(in srgb, var(--accent) 8%, var(--surface));
+  transform: translateY(-2px);
 }
 
 .award-statement {
@@ -440,11 +435,13 @@ button {
 }
 
 .portrait {
-  display: block;
-  width: 100%;
+  width: 136px;
   height: auto;
   aspect-ratio: 1;
+  justify-self: end;
   object-fit: cover;
+  border: 1px solid var(--hair);
+  border-radius: 12px;
   filter: saturate(0.96);
 }
 
@@ -723,24 +720,21 @@ button {
 
   .welcome-visuals {
     order: -1;
-    grid-template-columns: 108px minmax(0, 1fr);
-    grid-template-rows: minmax(150px, auto);
-    align-items: stretch;
+    grid-template-columns: 88px minmax(0, 1fr);
+    gap: 14px;
+    align-items: start;
+    justify-items: stretch;
   }
 
   .portrait {
-    width: 100%;
-    height: 100%;
-    aspect-ratio: auto;
-    object-position: center;
+    width: 96px;
+    height: 96px;
+    border-radius: 10px;
   }
 
   .featured-award {
     gap: 8px;
-    min-height: 0;
-    padding: 13px;
-    border-top: 0;
-    border-left: 2px solid var(--accent);
+    padding: 10px 0 0;
   }
 
   .award-statement {

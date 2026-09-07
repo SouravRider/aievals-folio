@@ -750,7 +750,23 @@ function ImageCarousel({ images }: { images: { src: string; alt: string }[] }) {
   };
 
   return (
-    <div className="carousel" aria-roledescription="carousel" aria-label="Manager feedback">
+    <div
+      className="carousel"
+      role="region"
+      aria-roledescription="carousel"
+      aria-label="Manager feedback"
+      tabIndex={0}
+      onKeyDown={(event) => {
+        if (event.key === "ArrowLeft") {
+          event.preventDefault();
+          goTo(index - 1);
+        }
+        if (event.key === "ArrowRight") {
+          event.preventDefault();
+          goTo(index + 1);
+        }
+      }}
+    >
       <div className="carousel-frame">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img className="b-image" src={images[index].src} alt={images[index].alt} loading="lazy" />
@@ -758,11 +774,13 @@ function ImageCarousel({ images }: { images: { src: string; alt: string }[] }) {
       <div className="carousel-controls">
         <button type="button" onClick={() => goTo(index - 1)} aria-label="Previous feedback">
           <BackIcon className="glyph glyph-xs" />
+          <span className="control-label">Previous</span>
         </button>
         <span aria-live="polite">
           {index + 1} / {images.length}
         </span>
         <button type="button" onClick={() => goTo(index + 1)} aria-label="Next feedback">
+          <span className="control-label">Next</span>
           <BackIcon className="glyph glyph-xs carousel-next" />
         </button>
       </div>

@@ -1031,25 +1031,32 @@ html[data-theme="dark"] .b-image:hover {
 }
 
 .carousel-controls button {
-  display: grid;
-  place-items: center;
-  width: 28px;
-  height: 28px;
-  border: 1px solid var(--hair);
-  border-radius: 50%;
-  color: var(--muted);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 10px;
+  border: 1px solid var(--muted);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--text);
+  font: 11px var(--sans);
 }
 
 .carousel-controls button:hover {
-  border-color: var(--ink);
-  color: var(--ink);
+  border-color: var(--accent);
+  color: var(--accent);
 }
 
-.carousel-controls span {
+.carousel-controls > span {
   min-width: 34px;
   font: 11px var(--mono);
   text-align: center;
   color: var(--muted);
+}
+
+.control-label {
+  line-height: 1;
 }
 
 .carousel-next {

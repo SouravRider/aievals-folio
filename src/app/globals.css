@@ -897,9 +897,9 @@ kbd {
 
 /* ---------- container + viewport ---------- */
 
-@container (min-width: 700px) {
+@container (min-width: 760px) {
   .note-body {
-    grid-template-columns: minmax(230px, 300px) minmax(0, 1fr);
+    grid-template-columns: minmax(252px, 310px) minmax(0, 1fr);
   }
 
   .note-body[data-view="list"] .pane-read,

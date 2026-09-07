@@ -414,8 +414,12 @@ export default function Desk() {
                     aria-label="View the EY Client Extraordinaire award certificate"
                   >
                     <span className="award-statement">
-                      <strong>EY award winner</strong> for turning enterprise AI
-                      deployments into measurable client value.
+                      <small>EY · Client Extraordinaire · 2026</small>
+                      <strong>Award-winning enterprise AI delivery.</strong>
+                      <span>
+                        Recognized for turning deployments into measurable
+                        client value.
+                      </span>
                     </span>
                     <ArrowIcon className="glyph award-arrow" />
                   </button>

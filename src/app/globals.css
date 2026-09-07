@@ -420,7 +420,7 @@ kbd {
   border: 1px solid var(--hair);
   border-radius: 5px;
   background: var(--paper);
-  font: 11px var(--mono);
+  font: 11.5px var(--sans);
   text-align: center;
   color: var(--text);
 }
@@ -438,6 +438,7 @@ kbd {
   background: var(--surface);
   box-shadow: var(--shadow);
   overflow: hidden;
+  container-type: inline-size;
   animation: rise 0.32s var(--ease) both;
 }
 
@@ -527,13 +528,14 @@ kbd {
   grid-template-columns: minmax(0, 1fr);
   flex: 1;
   min-height: 0;
-  container-type: inline-size;
 }
 
 .pane {
   min-width: 0;
   overflow-y: auto;
   overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: var(--hair) transparent;
 }
 
 .note-body[data-view="list"] .pane-read,
@@ -998,17 +1000,18 @@ kbd {
   .sheet-grip {
     display: grid;
     place-items: center;
-    height: 20px;
-    padding-top: 8px;
+    height: 26px;
+    padding-top: 9px;
     background: var(--bar);
     touch-action: none;
   }
 
   .sheet-grip span {
-    width: 38px;
-    height: 4px;
+    width: 42px;
+    height: 5px;
     border-radius: 999px;
-    background: var(--hair);
+    background: var(--muted);
+    opacity: 0.5;
   }
 
   .reader {

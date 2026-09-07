@@ -39,6 +39,7 @@ export default function Desk() {
   const [paletteOpen, setPaletteOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [cursor, setCursor] = useState(0);
+  const [isMac, setIsMac] = useState(false);
 
   const isDesktop = useMediaQuery("(min-width: 1024px)");
   const noteRef = useRef<HTMLElement | null>(null);
@@ -51,6 +52,7 @@ export default function Desk() {
   useEffect(() => {
     const stored = document.documentElement.dataset.theme;
     if (stored === "dark" || stored === "light") setTheme(stored);
+    setIsMac(/Mac|iPhone|iPad|iPod/.test(navigator.userAgent));
   }, []);
 
   const applyTheme = useCallback((next: Theme) => {
@@ -373,7 +375,7 @@ export default function Desk() {
                 </div>
               </dl>
               <p className="welcome-hint">
-                Open a folder, or search {NOTE_COUNT} notes with <kbd>⌘</kbd>
+                Open a folder, or search {NOTE_COUNT} notes with <kbd>{isMac ? "⌘" : "Ctrl"}</kbd>
                 <kbd>K</kbd>.
               </p>
             </section>

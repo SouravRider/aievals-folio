@@ -382,6 +382,33 @@ export default function Desk() {
         <main className="stage" aria-label="Notes">
           {!noteOpen && (
             <section className="welcome">
+              <button
+                type="button"
+                className="featured-award"
+                onClick={() => openFolder("proof", "client-extraordinaire")}
+                aria-label="Open the EY Client Extraordinaire award"
+              >
+                <span className="featured-award-media">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="/awards/ey-client-extraordinaire.jpg"
+                    alt="Complete EY Client Extraordinaire award presented to Sourav Sarkar"
+                    width={1240}
+                    height={873}
+                  />
+                </span>
+                <span className="featured-award-caption">
+                  <span>
+                    <strong>Client Extraordinaire</strong>
+                    <small>EY · May 2026</small>
+                  </span>
+                  <span className="featured-award-link">
+                    View recognition
+                    <ArrowIcon className="glyph glyph-xs" />
+                  </span>
+                </span>
+              </button>
+
               <div className="welcome-head">
                 <div className="welcome-intro">
                   <p className="eyebrow">AI evals · product · strategy</p>
@@ -460,14 +487,6 @@ export default function Desk() {
 
                 <section className="card">
                   <p className="card-label">Proof of work</p>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    className="proof-award"
-                    src="/awards/ey-client-extraordinaire.jpg"
-                    alt="EY Client Extraordinaire award presented to Sourav Sarkar"
-                    width={1240}
-                    height={873}
-                  />
                   <ul className="proof-list">
                     {overview.proof.map((item) => (
                       <li key={item}>{item}</li>

@@ -375,6 +375,67 @@ button {
   grid-template-columns: minmax(0, 1fr) auto;
   gap: 44px;
   align-items: start;
+  margin-top: 44px;
+}
+
+.featured-award {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid var(--hair);
+  border-radius: 9px;
+  background: #080807;
+  text-align: left;
+}
+
+.featured-award-media {
+  display: block;
+  width: 100%;
+  background: #050504;
+}
+
+.featured-award-media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.featured-award-caption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 13px 16px;
+  border-top: 1px solid #2b281f;
+  color: #f1eee8;
+}
+
+.featured-award-caption > span:first-child {
+  display: grid;
+  gap: 2px;
+}
+
+.featured-award-caption strong {
+  font: 500 13px var(--sans);
+}
+
+.featured-award-caption small {
+  font: 10.5px var(--mono);
+  color: #a8a399;
+}
+
+.featured-award-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex: none;
+  font: 12px var(--sans);
+  color: #c7c2b8;
+}
+
+.featured-award:hover .featured-award-link {
+  color: #fff;
 }
 
 .portrait {
@@ -540,16 +601,6 @@ button {
   border-bottom: 1px solid var(--hair);
   font: 13.5px/1.4 var(--sans);
   color: var(--text);
-}
-
-.proof-award {
-  display: block;
-  width: 100%;
-  aspect-ratio: 1.42;
-  margin-bottom: 10px;
-  border: 1px solid var(--hair);
-  border-radius: 6px;
-  object-fit: cover;
 }
 
 .card-link {

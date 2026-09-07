@@ -451,7 +451,7 @@ const feedback: Entry[] = [
   {
     id: "siddhi",
     title: "Siddhi Rawool",
-    meta: "Director, Generative AI Center of Excellence, EY India · Sourav's manager",
+    meta: "Director, Generative AI Center of Excellence, EY India · manages Sourav directly",
     note: "On product judgment, ownership, execution and cross-functional leadership.",
     href: "https://www.linkedin.com/in/siddhirawool/",
     blocks: [

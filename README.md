@@ -2,7 +2,9 @@
 
 Personal site for Sourav Sarkar — AI evaluation, AI product management, and strategy.
 
-The site is a single page built as a desk: an identity panel and a folder index on the left, and a note window on the right that opens when a folder is picked. Folders open as tabs; on desktop the note window can be dragged and resized, and on mobile it becomes a bottom sheet.
+The site is a single page built as a desk: an identity panel and a folder index on the left, and a stage on the right. The stage opens on an overview aimed at hiring managers and product leaders; picking a folder replaces it with a note window. Folders open as tabs; on desktop the window can be dragged and resized, and on mobile it becomes a bottom sheet.
+
+Three folders hold everything: **work** (roles, selected deployments, evaluation practice, capabilities), **writing** (published posts), and **proof of work** (the award and written feedback, shown as original screenshots).
 
 ## Run locally
 
@@ -22,11 +24,13 @@ All content lives in `src/content/site.ts` as typed data — nothing is hard-cod
 | `p` | A paragraph |
 | `list` | Bulleted points |
 | `stats` | Big-number metrics with captions |
-| `quote` | Pulled quotes, used for feedback and the award citation |
+| `quote` | Pulled quotes |
 | `image` | Certificates and screenshots from `public/` |
 | `links` | External links, rendered with an arrow |
 
 To add a folder, append to the `folders` array. Counts in the sidebar, the search index, and the no-JavaScript fallback all derive from that data automatically.
+
+The landing overview is a separate `overview` object in the same file: headline, positioning copy, the three top numbers, the outcome list, writing topics, and the proof summary. Its buttons open folders by id, so renaming a folder id means updating those calls in `src/components/Desk.tsx`.
 
 ## How it is built
 

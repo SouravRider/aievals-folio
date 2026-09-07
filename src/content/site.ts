@@ -70,7 +70,7 @@ export const overview = {
     topics: ["AI evals", "AI product management", "Data platforms", "Weekly AI briefings"],
   },
   proof: [
-    "Siddhi Rawool — Director, AI Center of Excellence, EY",
+    "Siddhi Rawool — Director, Generative AI CoE, EY India",
     "Sameeksha Nath — Senior Product Manager, Nielsen",
     "EY Client Extraordinaire — May 2026",
   ],
@@ -451,7 +451,7 @@ const feedback: Entry[] = [
   {
     id: "siddhi",
     title: "Siddhi Rawool",
-    meta: "Director, AI Center of Excellence, EY · Sourav's manager",
+    meta: "Director, Generative AI Center of Excellence, EY India · Sourav's manager",
     note: "On product judgment, ownership, execution and cross-functional leadership.",
     href: "https://www.linkedin.com/in/siddhirawool/",
     blocks: [

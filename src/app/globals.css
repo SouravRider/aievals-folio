@@ -435,7 +435,7 @@ button {
 }
 
 .portrait {
-  width: 116px;
+  width: 136px;
   height: auto;
   aspect-ratio: 1;
   justify-self: end;
@@ -727,8 +727,8 @@ button {
   }
 
   .portrait {
-    width: 88px;
-    height: 88px;
+    width: 96px;
+    height: 96px;
     border-radius: 10px;
   }
 

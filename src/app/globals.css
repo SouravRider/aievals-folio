@@ -384,59 +384,49 @@ button {
 }
 
 .featured-award {
-  display: block;
-  width: 100%;
-  overflow: hidden;
-  border: 1px solid var(--hair);
-  border-radius: 9px;
-  background: #080807;
-  text-align: left;
-}
-
-.featured-award-media {
-  display: block;
-  width: 100%;
-  background: #050504;
-}
-
-.featured-award-media img {
-  display: block;
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-}
-
-.featured-award-caption {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  padding: 13px 16px;
-  border-top: 1px solid #2b281f;
-  color: #f1eee8;
-}
-
-.featured-award-caption > span:first-child {
   display: grid;
-  gap: 2px;
+  gap: 10px;
+  width: 100%;
+  padding: 20px;
+  border: 1px solid color-mix(in srgb, var(--accent) 45%, var(--hair));
+  border-radius: 9px;
+  background: color-mix(in srgb, var(--accent) 5%, var(--surface));
+  text-align: left;
+  transition: border-color 0.15s ease, transform 0.2s var(--ease);
 }
 
-.featured-award-caption strong {
-  font: 500 13px var(--sans);
+.featured-award:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
 }
 
-.featured-award-caption small {
-  font: 10.5px var(--mono);
-  color: #a8a399;
+.award-kicker {
+  font: 500 10.5px var(--mono);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
 }
 
-.featured-award-caption > .glyph {
-  flex: none;
-  color: #c7c2b8;
+.award-title {
+  max-width: 10ch;
+  font: 400 29px/1.02 var(--serif);
+  letter-spacing: -0.025em;
+  color: var(--ink);
 }
 
-.featured-award:hover .featured-award-caption > .glyph {
-  color: #fff;
+.award-copy {
+  font: 13px/1.45 var(--sans);
+  color: var(--muted);
+  text-wrap: pretty;
+}
+
+.award-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 5px;
+  font: 12.5px var(--sans);
+  color: var(--ink);
 }
 
 .portrait {
@@ -735,16 +725,17 @@ button {
     border-radius: 10px;
   }
 
-  .featured-award-caption {
-    padding: 8px 10px;
+  .featured-award {
+    gap: 7px;
+    padding: 13px;
   }
 
-  .featured-award-caption strong {
-    font-size: 11px;
+  .award-title {
+    font-size: 22px;
   }
 
-  .featured-award-caption small {
-    font-size: 9px;
+  .award-copy {
+    font-size: 11.5px;
   }
 }
 

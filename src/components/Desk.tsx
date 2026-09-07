@@ -411,22 +411,16 @@ export default function Desk() {
                     type="button"
                     className="featured-award"
                     onClick={() => openFolder("proof", "client-extraordinaire")}
-                    aria-label="Open the EY Client Extraordinaire award"
+                    aria-label="View the EY Client Extraordinaire award certificate"
                   >
-                    <span className="featured-award-media">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src="/awards/ey-client-extraordinaire.jpg"
-                        alt="Complete EY Client Extraordinaire award presented to Sourav Sarkar"
-                        width={1240}
-                        height={873}
-                      />
+                    <span className="award-kicker">Recognition · EY</span>
+                    <span className="award-title">Client Extraordinaire</span>
+                    <span className="award-copy">
+                      Awarded for serving as a trusted business advisor and
+                      creating value for the client.
                     </span>
-                    <span className="featured-award-caption">
-                      <span>
-                        <strong>Client Extraordinaire</strong>
-                        <small>EY · May 2026</small>
-                      </span>
+                    <span className="award-link">
+                      View award
                       <ArrowIcon className="glyph glyph-xs" />
                     </span>
                   </button>

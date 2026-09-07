@@ -351,11 +351,180 @@ button {
 /* ---------- welcome ---------- */
 
 .welcome {
-  padding: 52px 52px 48px;
+  padding: 48px 48px 40px;
   border: 1px solid var(--hair);
   border-radius: 12px;
   background: var(--surface);
+  container-type: inline-size;
   animation: rise 0.4s var(--ease) both;
+}
+
+.welcome-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 44px;
+  align-items: start;
+}
+
+.portrait {
+  width: 152px;
+  height: 152px;
+  object-fit: cover;
+  border: 1px solid var(--hair);
+  border-radius: 12px;
+  filter: saturate(0.96);
+}
+
+.welcome-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 28px;
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 10px 16px;
+  border: 1px solid var(--hair);
+  border-radius: 8px;
+  background: var(--paper);
+  font: 13.5px var(--sans);
+  color: var(--text);
+  transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+}
+
+.cta:hover {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
+.cta-primary {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.cta-primary:hover {
+  color: var(--paper);
+  opacity: 0.88;
+}
+
+.overview-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 40px;
+  border-top: 1px solid var(--hair);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  padding: 24px 26px 4px 0;
+}
+
+.card + .card {
+  padding-left: 26px;
+  border-left: 1px solid var(--hair);
+}
+
+.card:last-child {
+  padding-right: 0;
+}
+
+.card-label {
+  margin: 0 0 16px;
+  font: 500 11px var(--mono);
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.card-body {
+  margin: 0 0 16px;
+  font-size: 16px;
+  line-height: 1.5;
+  text-wrap: pretty;
+}
+
+.outcome-list,
+.proof-list,
+.topic-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.outcome-list li {
+  display: grid;
+  gap: 4px;
+  padding: 0 0 16px;
+}
+
+.outcome-metric {
+  font: 500 15px var(--mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.outcome-text {
+  font: 13px/1.45 var(--sans);
+  color: var(--muted);
+}
+
+.topic-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.topic-list li {
+  padding: 4px 10px;
+  border: 1px solid var(--hair);
+  border-radius: 999px;
+  font: 11.5px var(--mono);
+  color: var(--text);
+}
+
+.proof-list li {
+  padding: 9px 0;
+  border-bottom: 1px solid var(--hair);
+  font: 13.5px/1.4 var(--sans);
+  color: var(--text);
+}
+
+.card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: auto;
+  padding-top: 20px;
+  font: 13px var(--sans);
+  color: var(--muted);
+  text-align: left;
+}
+
+.card-link:hover {
+  color: var(--accent);
+}
+
+.welcome-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 14px;
+  margin-top: 36px;
+  padding-top: 22px;
+  border-top: 1px solid var(--hair);
+}
+
+.welcome-cta {
+  margin: 0;
+  font-size: 16.5px;
+  color: var(--ink);
 }
 
 .eyebrow {
@@ -369,7 +538,8 @@ button {
 .welcome-line {
   margin: 0 0 20px;
   max-width: 15ch;
-  font-size: clamp(38px, 4.6vw, 58px);
+  font-weight: 400;
+  font-size: clamp(34px, 4.2vw, 52px);
   font-weight: 400;
   line-height: 1.02;
   letter-spacing: -0.03em;
@@ -387,7 +557,7 @@ button {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 24px;
-  margin: 44px 0 0;
+  margin: 40px 0 0;
   padding-top: 26px;
   border-top: 1px solid var(--hair);
 }
@@ -407,9 +577,47 @@ button {
 }
 
 .welcome-hint {
-  margin: 40px 0 0;
+  margin: 0;
   font: 13px var(--sans);
   color: var(--muted);
+}
+
+@container (max-width: 780px) {
+  .overview-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .card {
+    padding: 22px 0;
+    border-bottom: 1px solid var(--hair);
+  }
+
+  .card + .card {
+    padding-left: 0;
+    border-left: 0;
+  }
+
+  .card:last-child {
+    border-bottom: 0;
+  }
+
+  .card-link {
+    padding-top: 16px;
+  }
+}
+
+@container (max-width: 560px) {
+  .welcome-head {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+  }
+
+  .portrait {
+    order: -1;
+    width: 88px;
+    height: 88px;
+    border-radius: 10px;
+  }
 }
 
 kbd {
@@ -948,11 +1156,11 @@ kbd {
 
   .welcome {
     margin-top: 34px;
-    padding: 30px 26px 34px;
+    padding: 30px 26px 30px;
   }
 
   .welcome-line {
-    font-size: clamp(32px, 8vw, 42px);
+    font-size: clamp(30px, 7.4vw, 40px);
   }
 
   .welcome-stats {

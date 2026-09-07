@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { blockText, folders, identity, type Block, type Entry, type Folder } from "@/content/site";
+import { blockText, folders, identity, overview, type Block, type Entry, type Folder } from "@/content/site";
 import { ArrowIcon, BackIcon, CloseIcon, FolderIcon, MoonIcon, SearchIcon, SunIcon } from "./icons";
 
 type Theme = "light" | "dark";
@@ -367,29 +367,96 @@ export default function Desk() {
         <main className="stage" aria-label="Notes">
           {!noteOpen && (
             <section className="welcome">
-              <p className="eyebrow">AI evals · product · strategy</p>
-              <p className="welcome-line">Nothing ships without proof it works.</p>
-              <p className="welcome-body">
-                A working record of the roles, the deployments, and how the measurement layer around them is built.
-              </p>
+              <div className="welcome-head">
+                <div className="welcome-intro">
+                  <p className="eyebrow">AI evals · product · strategy</p>
+                  <h2 className="welcome-line">{overview.headline}</h2>
+                  <p className="welcome-body">{overview.lede}</p>
+                  <div className="welcome-actions">
+                    <button type="button" className="cta cta-primary" onClick={() => openFolder("work")}>
+                      See the work
+                      <ArrowIcon className="glyph glyph-xs" />
+                    </button>
+                    <button type="button" className="cta" onClick={() => openFolder("proof")}>
+                      Proof of work
+                      <ArrowIcon className="glyph glyph-xs" />
+                    </button>
+                  </div>
+                </div>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  className="portrait"
+                  src={overview.portrait.src}
+                  alt={overview.portrait.alt}
+                  width={400}
+                  height={400}
+                />
+              </div>
+
               <dl className="welcome-stats">
-                <div>
-                  <dt>4</dt>
-                  <dd>live enterprise deployments in year one</dd>
-                </div>
-                <div>
-                  <dt>92%</dt>
-                  <dd>eval parity with human auditors</dd>
-                </div>
-                <div>
-                  <dt>40%</dt>
-                  <dd>lower inference cost, quality held</dd>
-                </div>
+                {overview.stats.map((stat) => (
+                  <div key={stat.value}>
+                    <dt>{stat.value}</dt>
+                    <dd>{stat.label}</dd>
+                  </div>
+                ))}
               </dl>
-              <p className="welcome-hint">
-                Open a folder, or search {NOTE_COUNT} notes with <kbd>{isMac ? "⌘" : "Ctrl"}</kbd>
-                <kbd>K</kbd>.
-              </p>
+
+              <div className="overview-grid">
+                <section className="card">
+                  <p className="card-label">Selected outcomes</p>
+                  <ul className="outcome-list">
+                    {overview.outcomes.map((outcome) => (
+                      <li key={outcome.metric}>
+                        <span className="outcome-metric">{outcome.metric}</span>
+                        <span className="outcome-text">{outcome.text}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <button type="button" className="card-link" onClick={() => openFolder("work")}>
+                    Roles, deployments and evals
+                    <ArrowIcon className="glyph glyph-xs" />
+                  </button>
+                </section>
+
+                <section className="card">
+                  <p className="card-label">Writing</p>
+                  <p className="card-body">{overview.writing.text}</p>
+                  <ul className="topic-list">
+                    {overview.writing.topics.map((topic) => (
+                      <li key={topic}>{topic}</li>
+                    ))}
+                  </ul>
+                  <button type="button" className="card-link" onClick={() => openFolder("writing")}>
+                    Read 16 posts
+                    <ArrowIcon className="glyph glyph-xs" />
+                  </button>
+                </section>
+
+                <section className="card">
+                  <p className="card-label">Proof of work</p>
+                  <ul className="proof-list">
+                    {overview.proof.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                  <button type="button" className="card-link" onClick={() => openFolder("proof")}>
+                    See the receipts
+                    <ArrowIcon className="glyph glyph-xs" />
+                  </button>
+                </section>
+              </div>
+
+              <div className="welcome-foot">
+                <p className="welcome-cta">
+                  Working on a hard AI problem?{" "}
+                  <a href="mailto:sourav.work20@gmail.com">sourav.work20@gmail.com</a>
+                </p>
+                <p className="welcome-hint">
+                  Search {NOTE_COUNT} notes with <kbd>{isMac ? "⌘" : "Ctrl"}</kbd>
+                  <kbd>K</kbd>
+                </p>
+              </div>
             </section>
           )}
 

@@ -38,6 +38,43 @@ export const identity = {
   ],
 };
 
+export const overview = {
+  portrait: {
+    src: "/sourav-sarkar.png",
+    alt: "Sourav Sarkar reading at a cafe",
+  },
+  headline: "Nothing ships without proof it works.",
+  lede: "I take GenAI from prototype to production inside enterprises that cannot afford to be wrong. Four live deployments in my first year at EY — across BPO, aerospace, healthcare and insurance — each one through an eval and guardrail layer that client security, risk and procurement sign off on before rollout.",
+  stats: [
+    { value: "5+", label: "years in product, across AI, data and B2B SaaS" },
+    { value: "4", label: "enterprise AI deployments in year one at EY" },
+    { value: "40%", label: "lower inference cost, quality held" },
+  ],
+  outcomes: [
+    {
+      metric: "83% → 97%",
+      text: "CSAT on an agentic case-resolution system for Honeywell Aerospace, past a 93% contractual threshold. The contract was renewed.",
+    },
+    {
+      metric: "10% → 90%",
+      text: "QA coverage at Everise across 50,000+ interactions a day, at 92% scoring parity with human auditors.",
+    },
+    {
+      metric: "~$0.02 → ~$0.50",
+      text: "Revenue per call at Firstsource, from decision support delivered to agents mid-conversation.",
+    },
+  ],
+  writing: {
+    text: "I write about making AI measurable: what to evaluate, how to grade it, and the data platforms underneath.",
+    topics: ["AI evals", "AI product management", "Data platforms", "Weekly AI briefings"],
+  },
+  proof: [
+    "EY Client Extraordinaire — May 2026",
+    "Sameeksha Nath — Senior Product Manager, Nielsen",
+    "Siddhi Rawool — peer feedback",
+  ],
+};
+
 const work: Entry[] = [
   {
     id: "ey",
@@ -418,12 +455,9 @@ const feedback: Entry[] = [
     href: "https://www.linkedin.com/in/sameeksha-nath/",
     blocks: [
       {
-        kind: "quote",
-        text: "I had the opportunity to manage Sourav at Nielsen, and he consistently stood out for his ownership and clarity of thought. He has a strong ability to break down ambiguous problems, align stakeholders, and drive execution end-to-end.",
-      },
-      {
-        kind: "quote",
-        text: "Sourav brings a great balance of strategic thinking and hands-on execution, along with a mindset of continuous learning. He's also a dependable team player who collaborates effectively across functions.",
+        kind: "image",
+        src: "/proof/sameeksha-nath.png",
+        alt: "LinkedIn recommendation from Sameeksha Nath, Senior Product Manager at Nielsen, dated 3 May 2026, describing Sourav's ownership, clarity of thought, and ability to break down ambiguous problems and drive execution end to end.",
       },
       { kind: "links", items: [{ label: "Sameeksha on LinkedIn", href: "https://www.linkedin.com/in/sameeksha-nath/" }] },
     ],
@@ -436,12 +470,9 @@ const feedback: Entry[] = [
     href: "https://www.linkedin.com/in/siddhirawool/",
     blocks: [
       {
-        kind: "quote",
-        text: "He demonstrates solid product sense and a clear point of view, is dependable with ambiguous work, and consistently follows through to get things done. He collaborates effectively with engineering and cross-functional partners, proactively seeks feedback, and ensures alignment by clarifying what success looks like.",
-      },
-      {
-        kind: "quote",
-        text: "He is a force multiplier for delivery — his clarity and follow-through help teams converge faster, and his willingness to engage with details reduces ambiguity for developers and stakeholders.",
+        kind: "image",
+        src: "/proof/siddhi-rawool.png",
+        alt: "Written feedback from Siddhi Rawool covering product judgment and point of view, ownership and execution, collaboration and communication, and describing Sourav as a force multiplier for delivery.",
       },
       { kind: "links", items: [{ label: "Siddhi on LinkedIn", href: "https://www.linkedin.com/in/siddhirawool/" }] },
     ],
@@ -455,10 +486,6 @@ const awards: Entry[] = [
     meta: "EY · 01 May 2026",
     note: "Presented by Rohan Sachdev, Consulting Services Leader.",
     blocks: [
-      {
-        kind: "quote",
-        text: "We are proud to celebrate you as the Client Extraordinaire for serving as a trusted business advisor and creating value for the client. We laud your commitment to excellence and your role as an inspiration to your coworkers.",
-      },
       {
         kind: "image",
         src: "/awards/ey-client-extraordinaire.jpg",

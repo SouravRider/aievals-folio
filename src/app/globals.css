@@ -372,10 +372,15 @@ button {
 
 .welcome-head {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 44px;
+  grid-template-columns: minmax(0, 1fr) minmax(250px, 320px);
+  gap: clamp(36px, 5cqi, 68px);
   align-items: start;
-  margin-top: 44px;
+}
+
+.welcome-visuals {
+  display: grid;
+  gap: 22px;
+  justify-items: end;
 }
 
 .featured-award {
@@ -425,16 +430,12 @@ button {
   color: #a8a399;
 }
 
-.featured-award-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
+.featured-award-caption > .glyph {
   flex: none;
-  font: 12px var(--sans);
   color: #c7c2b8;
 }
 
-.featured-award:hover .featured-award-link {
+.featured-award:hover .featured-award-caption > .glyph {
   color: #fff;
 }
 
@@ -720,11 +721,30 @@ button {
     gap: 24px;
   }
 
-  .portrait {
+  .welcome-visuals {
     order: -1;
+    grid-template-columns: 88px minmax(0, 1fr);
+    gap: 14px;
+    align-items: start;
+    justify-items: stretch;
+  }
+
+  .portrait {
     width: 88px;
     height: 88px;
     border-radius: 10px;
+  }
+
+  .featured-award-caption {
+    padding: 8px 10px;
+  }
+
+  .featured-award-caption strong {
+    font-size: 11px;
+  }
+
+  .featured-award-caption small {
+    font-size: 9px;
   }
 }
 

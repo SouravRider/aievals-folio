@@ -168,8 +168,12 @@ export default function Desk() {
   }, [isDesktop]);
 
   const onBarPointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
-    if (!isDesktop || event.button !== 0) return;
+    if (event.button !== 0) return;
     if ((event.target as HTMLElement).closest("button")) return;
+    if (!isDesktop) {
+      onGripPointerDown(event);
+      return;
+    }
     const element = noteRef.current;
     if (!element) return;
     const rect = element.getBoundingClientRect();
@@ -185,6 +189,10 @@ export default function Desk() {
   };
 
   const onBarPointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (!isDesktop) {
+      onGripPointerMove(event);
+      return;
+    }
     const start = dragRef.current;
     if (!start) return;
     const dx = event.clientX - start.x;
@@ -196,6 +204,10 @@ export default function Desk() {
   };
 
   const endDrag = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (!isDesktop) {
+      onGripPointerUp(event);
+      return;
+    }
     if (!dragRef.current) return;
     dragRef.current = null;
     if (event.currentTarget.hasPointerCapture(event.pointerId)) {

@@ -380,7 +380,7 @@ button {
 .welcome-visuals {
   display: grid;
   gap: 16px;
-  justify-items: end;
+  justify-items: stretch;
 }
 
 .featured-award {
@@ -389,28 +389,38 @@ button {
   justify-content: space-between;
   gap: 16px;
   width: 100%;
-  padding: 15px 0;
-  border-top: 1px solid var(--hair);
-  border-bottom: 1px solid var(--hair);
+  padding: 17px;
+  border: 1px solid color-mix(in srgb, var(--accent) 48%, var(--hair));
+  border-left-width: 3px;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--accent) 6%, var(--surface));
   text-align: left;
-  transition: color 0.15s ease, border-color 0.15s ease;
+  transition: border-color 0.15s ease, background 0.15s ease, transform 0.2s var(--ease);
 }
 
 .featured-award:hover {
   border-color: var(--accent);
-  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 10%, var(--surface));
+  transform: translateY(-2px);
 }
 
 .award-statement {
   max-width: 27ch;
-  font: 14px/1.45 var(--sans);
+  font: 15px/1.5 var(--sans);
   color: var(--text);
   text-wrap: pretty;
 }
 
 .award-statement strong {
-  font-weight: 600;
-  color: var(--ink);
+  display: inline-block;
+  margin: 0 3px 4px 0;
+  padding: 3px 6px;
+  border-radius: 4px;
+  background: var(--accent);
+  font: 500 10.5px var(--mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--surface);
 }
 
 .award-arrow {
@@ -422,9 +432,10 @@ button {
 }
 
 .portrait {
-  width: 100%;
+  width: 148px;
   height: auto;
   aspect-ratio: 1;
+  justify-self: end;
   object-fit: cover;
   border: 1px solid var(--hair);
   border-radius: 12px;
@@ -720,12 +731,16 @@ button {
 
   .featured-award {
     gap: 8px;
-    padding: 9px 0;
+    padding: 11px;
   }
 
   .award-statement {
     font-size: 11.5px;
     line-height: 1.4;
+  }
+
+  .award-statement strong {
+    font-size: 9px;
   }
 }
 

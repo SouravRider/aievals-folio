@@ -1,7 +1,16 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { blockText, folders, identity, overview, type Block, type Entry, type Folder } from "@/content/site";
+import {
+  blockText,
+  folders,
+  identity,
+  overview,
+  recentWriting,
+  type Block,
+  type Entry,
+  type Folder,
+} from "@/content/site";
 import { ArrowIcon, BackIcon, CloseIcon, FolderIcon, MoonIcon, SearchIcon, SunIcon } from "./icons";
 
 type Theme = "light" | "dark";
@@ -425,6 +434,16 @@ export default function Desk() {
                   <ul className="topic-list">
                     {overview.writing.topics.map((topic) => (
                       <li key={topic}>{topic}</li>
+                    ))}
+                  </ul>
+                  <ul className="recent-list">
+                    {recentWriting.map((post) => (
+                      <li key={post.id}>
+                        <button type="button" onClick={() => openFolder("writing", post.id)}>
+                          <span className="recent-title">{post.title}</span>
+                          <span className="recent-date">{post.meta}</span>
+                        </button>
+                      </li>
                     ))}
                   </ul>
                   <button type="button" className="card-link" onClick={() => openFolder("writing")}>

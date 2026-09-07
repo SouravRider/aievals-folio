@@ -608,6 +608,8 @@ export const folders: Folder[] = [
   },
 ];
 
+export const recentWriting = writing.slice(0, 3).map(({ id, title, meta }) => ({ id, title, meta }));
+
 export function blockText(entry: Entry): string {
   return entry.blocks
     .map((block) => {

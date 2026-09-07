@@ -411,6 +411,7 @@ button {
   letter-spacing: 0.09em;
   text-transform: uppercase;
   color: var(--accent);
+  white-space: nowrap;
 }
 
 .award-statement strong {

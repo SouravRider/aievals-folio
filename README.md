@@ -41,6 +41,8 @@ The landing overview is a separate `overview` object in the same file: headline,
 
 Keyboard: `⌘K` / `Ctrl+K` opens search, typing any letter opens it too, and `Escape` steps back out of the reader, then the window.
 
+Phones and tablets (below 1024px): the layout collapses to one column ordered for a small screen — name and role, the overview, then the bio and contact — and the folder index moves into a fixed dock at the bottom of the screen. Notes open as a bottom sheet that locks the page behind it, closes on the hardware back button or a downward drag, and shows a previous/next pager at the end of each note. Screenshots open full size on tap and the feedback carousel responds to swipes.
+
 ## Deploy
 
 Deploy with Vercel, then add `aievalsguy.xyz` under the project's Domains settings and create the DNS records Vercel provides at the registrar.

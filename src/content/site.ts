@@ -81,26 +81,26 @@ const work: Entry[] = [
     id: "ey",
     title: "Product Manager, Enterprise AI Platform",
     meta: "EY, AI Center of Excellence · Oct 2025 — Present",
-    note: "Data transformation, GenAI insights and agentic decisioning, deployed inside client environments.",
+    note: "EY's AI platform for data transformation, GenAI insights and agentic decisioning, and the eval and review layer every client deployment must pass.",
     blocks: [
       {
         kind: "p",
-        text: "I own EY's AI-native data platform and the eval and guardrail layer every deployment runs through. Client security and risk teams review that layer before anything goes live.",
+        text: "I own EY's AI platform for data transformation, GenAI insights and agentic decisioning, and the eval and review layer that every client deployment must pass before rollout.",
       },
       {
         kind: "stats",
         items: [
-          { value: "4", label: "live deployments in year one" },
-          { value: "1,000+", label: "human-labelled eval cases" },
-          { value: "40%", label: "lower inference cost from routing" },
+          { value: "1,000+", label: "case human-labelled eval set every release is scored against" },
+          { value: "10% → 90%", label: "conversation QA coverage at Everise, 50,000+ interactions a day" },
+          { value: "92%", label: "automated scores matching human auditors" },
         ],
       },
       {
         kind: "list",
         items: [
-          "Offline scoring, production sampling for human review, PII redaction and model routing, owned end to end.",
-          "Delivery inside locked-down client environments where data cannot leave the network.",
-          "Sectors shipped into: BPO, aerospace repair and overhaul, healthcare BPM, insurance.",
+          "Own the eval and guardrail layer. Every release is scored offline against a 1,000+ case human-labelled set, 5% of production traffic is sampled for human review, and PII is redacted before anything reaches a model.",
+          "Scaled conversation QA for Everise, the BPO behind Apple, Microsoft and Airbus support, from a 10% manual sample to 90% automated auditing across 50,000+ interactions a day. Automated scores match human auditors 92% of the time. Defined the mistake taxonomy and scoring rubric with the client's QA leads, ran auditor calibration on disagreements, and owned the reviewer workflow. Delivered inside the client's locked-down VDI.",
+          "Shipped a conversational agent for an insurance carrier that runs live database queries mid-conversation to give personalised answers. Owned how tool calls and failures are logged and surfaced for review. Client reported first-contact resolution up 28% and wait times down 60%.",
         ],
       },
     ],

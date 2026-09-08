@@ -45,6 +45,7 @@ export default function Desk() {
   const [offset, setOffset] = useState<Offset>({ x: 0, y: 0 });
   const [size, setSize] = useState<Size | null>(null);
   const [sheetY, setSheetY] = useState(0);
+  const [sheetDragging, setSheetDragging] = useState(false);
   const [paletteOpen, setPaletteOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [cursor, setCursor] = useState(0);
@@ -57,6 +58,7 @@ export default function Desk() {
   const dragRef = useRef<{ x: number; y: number; left: number; top: number; w: number; h: number } | null>(null);
   const resizeRef = useRef<{ x: number; y: number; w: number; h: number } | null>(null);
   const sheetRef = useRef<{ y: number } | null>(null);
+  const sheetHistoryRef = useRef(false);
 
   useEffect(() => {
     const stored = document.documentElement.dataset.theme;
@@ -178,6 +180,39 @@ export default function Desk() {
     }
   }, [isDesktop]);
 
+  const noteOpen = tabs.length > 0 && activeFolder !== null;
+  const sheetOpen = noteOpen && !isDesktop;
+
+  // Lock the page behind the sheet so scroll gestures inside it don't chain to the body.
+  useEffect(() => {
+    document.documentElement.dataset.locked = sheetOpen ? "true" : "false";
+    return () => {
+      document.documentElement.dataset.locked = "false";
+    };
+  }, [sheetOpen]);
+
+  // On phones the hardware/gesture back should dismiss the sheet, not leave the site.
+  useEffect(() => {
+    if (sheetOpen && !sheetHistoryRef.current) {
+      window.history.pushState({ sheet: true }, "");
+      sheetHistoryRef.current = true;
+    } else if (!sheetOpen && sheetHistoryRef.current) {
+      sheetHistoryRef.current = false;
+      if (window.history.state?.sheet) window.history.back();
+    }
+  }, [sheetOpen]);
+
+  useEffect(() => {
+    const onPopState = () => {
+      if (!window.history.state?.sheet && sheetHistoryRef.current) {
+        sheetHistoryRef.current = false;
+        closeNote();
+      }
+    };
+    window.addEventListener("popstate", onPopState);
+    return () => window.removeEventListener("popstate", onPopState);
+  }, [closeNote]);
+
   const onBarPointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
     if (event.button !== 0) return;
     if ((event.target as HTMLElement).closest("button")) return;
@@ -255,6 +290,7 @@ export default function Desk() {
   const onGripPointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
     if (isDesktop) return;
     sheetRef.current = { y: event.clientY };
+    setSheetDragging(true);
     event.currentTarget.setPointerCapture(event.pointerId);
   };
 
@@ -266,6 +302,7 @@ export default function Desk() {
   const onGripPointerUp = (event: React.PointerEvent<HTMLDivElement>) => {
     if (!sheetRef.current) return;
     sheetRef.current = null;
+    setSheetDragging(false);
     if (event.currentTarget.hasPointerCapture(event.pointerId)) {
       event.currentTarget.releasePointerCapture(event.pointerId);
     }
@@ -284,12 +321,17 @@ export default function Desk() {
     items[next]?.focus();
   };
 
-  const noteOpen = tabs.length > 0 && activeFolder !== null;
+  const entryIndex = activeFolder && activeEntry ? activeFolder.entries.indexOf(activeEntry) : -1;
+  const prevEntry = activeFolder && entryIndex > 0 ? activeFolder.entries[entryIndex - 1] : null;
+  const nextEntry =
+    activeFolder && entryIndex !== -1 && entryIndex < activeFolder.entries.length - 1
+      ? activeFolder.entries[entryIndex + 1]
+      : null;
 
   return (
     <>
-      <a className="skip" href="#index">
-        Skip to the index
+      <a className="skip" href="#stage">
+        Skip to content
       </a>
 
       <div className="desk">
@@ -303,7 +345,7 @@ export default function Desk() {
             <div className="tools">
               <button
                 type="button"
-                className="tool-btn"
+                className="tool-btn tool-search"
                 aria-label="Search everything"
                 aria-expanded={paletteOpen}
                 onClick={() => setPaletteOpen(true)}
@@ -379,7 +421,7 @@ export default function Desk() {
           <p className="colophon">aievalsguy.xyz</p>
         </aside>
 
-        <main className="stage" aria-label="Notes">
+        <main className="stage" id="stage" aria-label="Notes">
           {!noteOpen && (
             <section className="welcome">
               <div className="welcome-head">
@@ -510,6 +552,7 @@ export default function Desk() {
                 className="note"
                 ref={noteRef}
                 data-sheet={!isDesktop}
+                data-dragging={sheetDragging}
                 style={
                   isDesktop
                     ? { transform: `translate3d(${offset.x}px, ${offset.y}px, 0)`, width: size?.w, height: size?.h }
@@ -597,7 +640,10 @@ export default function Desk() {
                     {activeEntry ? (
                       <Reader
                         entry={activeEntry}
+                        prev={prevEntry}
+                        next={nextEntry}
                         onBack={() => setSelection((current) => ({ ...current, [activeFolder.id]: null }))}
+                        onSelect={(id) => setSelection((current) => ({ ...current, [activeFolder.id]: id }))}
                       />
                     ) : (
                       <p className="pane-empty">Pick a note from {activeFolder.label} to read it here.</p>
@@ -621,6 +667,32 @@ export default function Desk() {
           )}
         </main>
       </div>
+
+      <nav className="dock" aria-label="Folders">
+        {folders.map((folder) => (
+          <button
+            key={folder.id}
+            type="button"
+            className="dock-item"
+            data-open={tabs.includes(folder.id)}
+            data-active={noteOpen && activeTab === folder.id}
+            onClick={() => openFolder(folder.id)}
+          >
+            <FolderIcon className="glyph folder-glyph" />
+            <span>{folder.label}</span>
+          </button>
+        ))}
+        <button
+          type="button"
+          className="dock-item"
+          aria-label="Search everything"
+          aria-expanded={paletteOpen}
+          onClick={() => setPaletteOpen(true)}
+        >
+          <SearchIcon className="glyph" />
+          <span>search</span>
+        </button>
+      </nav>
 
       {paletteOpen && (
         <div className="palette" role="dialog" aria-modal="true" aria-label="Search">
@@ -650,7 +722,10 @@ export default function Desk() {
                   }
                 }}
               />
-              <kbd>esc</kbd>
+              <kbd className="palette-esc">esc</kbd>
+              <button type="button" className="palette-cancel" onClick={() => setPaletteOpen(false)}>
+                Cancel
+              </button>
             </div>
             {query.trim() !== "" && (
               <div className="palette-results">
@@ -690,9 +765,27 @@ export default function Desk() {
   );
 }
 
-function Reader({ entry, onBack }: { entry: Entry; onBack: () => void }) {
+function Reader({
+  entry,
+  prev,
+  next,
+  onBack,
+  onSelect,
+}: {
+  entry: Entry;
+  prev: Entry | null;
+  next: Entry | null;
+  onBack: () => void;
+  onSelect: (id: string) => void;
+}) {
+  const articleRef = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    articleRef.current?.closest(".pane")?.scrollTo({ top: 0 });
+  }, [entry.id]);
+
   return (
-    <article className="reader">
+    <article className="reader" ref={articleRef}>
       <button type="button" className="back" onClick={onBack}>
         <BackIcon className="glyph glyph-xs" />
         All notes
@@ -704,7 +797,42 @@ function Reader({ entry, onBack }: { entry: Entry; onBack: () => void }) {
           <BlockView block={block} key={i} />
         ))}
       </div>
+      {(prev || next) && (
+        <nav className="reader-nav" aria-label="Neighbouring notes">
+          {prev ? (
+            <button type="button" className="reader-nav-prev" onClick={() => onSelect(prev.id)}>
+              <small>Previous</small>
+              <span>{prev.title}</span>
+            </button>
+          ) : (
+            <span />
+          )}
+          {next && (
+            <button type="button" className="reader-nav-next" onClick={() => onSelect(next.id)}>
+              <small>Next</small>
+              <span>{next.title}</span>
+            </button>
+          )}
+        </nav>
+      )}
     </article>
+  );
+}
+
+function Figure({ src, alt }: { src: string; alt: string }) {
+  return (
+    <figure className="b-figure">
+      <a className="b-figure-link" href={src} target="_blank" rel="noreferrer" aria-label={`Open full size: ${alt}`}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img className="b-image" src={src} alt={alt} loading="lazy" />
+      </a>
+      <figcaption>
+        <a href={src} target="_blank" rel="noreferrer" tabIndex={-1} aria-hidden="true">
+          Open full size
+          <ArrowIcon className="glyph glyph-xs" />
+        </a>
+      </figcaption>
+    </figure>
   );
 }
 
@@ -734,8 +862,7 @@ function BlockView({ block }: { block: Block }) {
     case "quote":
       return <blockquote className="b-quote">{block.text}</blockquote>;
     case "image":
-      // eslint-disable-next-line @next/next/no-img-element
-      return <img className="b-image" src={block.src} alt={block.alt} loading="lazy" />;
+      return <Figure src={block.src} alt={block.alt} />;
     case "carousel":
       return <ImageCarousel images={block.images} />;
     case "links":
@@ -754,9 +881,37 @@ function BlockView({ block }: { block: Block }) {
 
 function ImageCarousel({ images }: { images: { src: string; alt: string }[] }) {
   const [index, setIndex] = useState(0);
+  const swipeRef = useRef<{ x: number; y: number } | null>(null);
+  const swipedRef = useRef(false);
 
   const goTo = (next: number) => {
     setIndex((next + images.length) % images.length);
+  };
+
+  const onSwipeStart = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (event.pointerType === "mouse") return;
+    swipeRef.current = { x: event.clientX, y: event.clientY };
+    swipedRef.current = false;
+  };
+
+  const onSwipeEnd = (event: React.PointerEvent<HTMLDivElement>) => {
+    const start = swipeRef.current;
+    swipeRef.current = null;
+    if (!start) return;
+    const dx = event.clientX - start.x;
+    const dy = event.clientY - start.y;
+    if (Math.abs(dx) > 44 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+      swipedRef.current = true;
+      goTo(dx < 0 ? index + 1 : index - 1);
+    }
+  };
+
+  // A swipe ends on the image link; swallow the click so it doesn't open the image.
+  const onFrameClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    if (!swipedRef.current) return;
+    swipedRef.current = false;
+    event.preventDefault();
+    event.stopPropagation();
   };
 
   return (
@@ -777,9 +932,16 @@ function ImageCarousel({ images }: { images: { src: string; alt: string }[] }) {
         }
       }}
     >
-      <div className="carousel-frame">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img className="b-image" src={images[index].src} alt={images[index].alt} loading="lazy" />
+      <div
+        className="carousel-frame"
+        onPointerDown={onSwipeStart}
+        onPointerUp={onSwipeEnd}
+        onClickCapture={onFrameClick}
+        onPointerCancel={() => {
+          swipeRef.current = null;
+        }}
+      >
+        <Figure src={images[index].src} alt={images[index].alt} />
       </div>
       <div className="carousel-controls">
         <button type="button" onClick={() => goTo(index - 1)} aria-label="Previous feedback">

@@ -1,6 +1,16 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { identity } from "@/content/site";
 import "./globals.css";
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#fbfaf7" },
+    { media: "(prefers-color-scheme: dark)", color: "#121211" },
+  ],
+};
 
 const description =
   "Sourav Sarkar builds the eval and guardrail layer behind enterprise AI: offline scoring, human review sampling, redaction and model routing. Notes on AI evals, product management and strategy.";
